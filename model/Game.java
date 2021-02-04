@@ -67,12 +67,6 @@ public class Game {
             }
         }
         System.out.println();
-        for (int row = 0; row < root; row++) {
-            for (int i = 0; i < root; i++) {
-                System.out.print(board[i][row][1] + " ");
-                if (i == root - 1) System.out.println();
-            }
-        }
     }
 
     public int revealSpace(int x, int y) {

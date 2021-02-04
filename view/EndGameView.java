@@ -22,7 +22,6 @@ public class EndGameView {
         this.window = window;
         if (state == -10) window.setTitle("Game Over");
         else window.setTitle("Victory");
-        //window.setTitle("Victory");
 
         this.xResolution = xResolution;
         this.yResolution = yResolution;
