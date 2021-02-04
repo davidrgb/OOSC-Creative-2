@@ -58,7 +58,7 @@ public class GameView {
         container.add(BorderLayout.CENTER, panel);
     }
 
-    public void gameOver() {
+    /*public void gameOver() {
         window.getContentPane().removeAll();
         var gameOver = new GameOverView(window, xResolution, yResolution);
         gameOver.init();
@@ -70,6 +70,14 @@ public class GameView {
         window.getContentPane().removeAll();
         var victory = new VictoryView(window, xResolution, yResolution);
         victory.init();
+        window.pack();
+        window.revalidate();
+    }*/
+
+    public void endGame(int state) {
+        window.getContentPane().removeAll();
+        var endGame = new EndGameView(window, xResolution, yResolution, state);
+        endGame.init();
         window.pack();
         window.revalidate();
     }

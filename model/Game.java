@@ -112,6 +112,10 @@ public class Game {
         System.out.println("VICTORY");
     }
 
+    public int[][][] getBoard() {
+        return board;
+    }
+
     public int getSize() {
         return size;
     }
@@ -129,12 +133,7 @@ public class Game {
         firstTileY = y;
     }
 
-    public int[][][] getBoard() {
-        return board;
-    }
-
     public int getState() {
         return state;
     }
-    
 }
