@@ -62,25 +62,10 @@ public class Game {
                 board[x][y][2] = 0;
             }
         }
-
-        for (int row = 0; row < root; row++) {
-            for (int i = 0; i < root; i++) {
-                System.out.print(board[i][row][0] + " ");
-                if (i == root - 1) System.out.println();
-            }
-        }
-        System.out.println();
-        for (int row = 0; row < root; row++) {
-            for (int i = 0; i < root; i++) {
-                System.out.print(board[i][row][1] + " ");
-                if (i == root - 1) System.out.println();
-            }
-        }
     }
 
     public int revealSpace(int x, int y) {
         if (board[x][y][0] == 1) {
-            gameOver();
             deactivateBoard();
             return -10;
         }
@@ -89,7 +74,6 @@ public class Game {
             safeSpaces++;
         }
         if (traps + safeSpaces == size) {
-            victory();
             deactivateBoard();
             return 10;
         }
@@ -102,14 +86,6 @@ public class Game {
                 board[x][y][2] = 1;
             }
         }
-    }
-
-    public void gameOver() {
-        System.out.println("GAME OVER");
-    }
-
-    public void victory() {
-        System.out.println("VICTORY");
     }
 
     public int[][][] getBoard() {
