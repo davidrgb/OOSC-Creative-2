@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Game {
 
-    private int mode;
-
     private int[][][] board;
     private int size;
     private int root;
@@ -20,7 +18,6 @@ public class Game {
     Random random = new Random();
 
     public Game(int mode) {
-        this.mode = mode;
         switch (mode) {
             case 1: size = 9; root = 3; break;
             case 2: size = 25; root = 5; break;
