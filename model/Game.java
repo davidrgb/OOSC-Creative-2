@@ -9,9 +9,13 @@ public class Game {
     private int[][][] board;
     private int size;
     private int root;
+    private int traps;
+    private int safeSpaces;
 
     private int firstTileX;
     private int firstTileY;
+
+    private int state;
 
     Random random = new Random();
 
@@ -25,6 +29,13 @@ public class Game {
 
         firstTileX = -1;
         firstTileY = -1;
+
+        board = new int[root][root][3];
+
+        traps = 0;
+        safeSpaces = 0;
+
+        state = 0;
     }
 
     public void randomizeBoard() {
@@ -35,29 +46,70 @@ public class Game {
                     continue; // Skips trap assignment of file selected tile
                 }
                 int temp = random.nextInt(10) + 1;
-                if (temp < 8) {
+                if (temp < 8 && traps < (size * 7 / 10)) {
                     board[x][y][0] = 1;
                     for (int rows = y + 1; rows >= y - 1; rows--) { // Adjacent trap addition
                         if (rows >= 0 && rows < root) {
                             for (int columns = x - 1; columns <= x + 1; columns++) {
-                                if (columns >= 0 && columns < root && (columns != x && rows != y)) board[columns][rows][1] = board[columns][rows][1] + 1;
+                                if (columns >= 0 && columns < root) board[columns][rows][1] = board[columns][rows][1] + 1;
                             }
                         }
                     }
+                    board[x][y][1] = board[x][y][1] - 1;
+                    traps++;
                 }
                 else board[x][y][0] = 0;
                 board[x][y][2] = 0;
             }
         }
+
+        for (int row = 0; row < root; row++) {
+            for (int i = 0; i < root; i++) {
+                System.out.print(board[i][row][0] + " ");
+                if (i == root - 1) System.out.println();
+            }
+        }
+        System.out.println();
+        for (int row = 0; row < root; row++) {
+            for (int i = 0; i < root; i++) {
+                System.out.print(board[i][row][1] + " ");
+                if (i == root - 1) System.out.println();
+            }
+        }
     }
 
-    public void revealSpace(int x, int y) {
-        if (board[x][y][0] == 1) gameOver();
-        else board[x][y][2] = 2;
+    public int revealSpace(int x, int y) {
+        if (board[x][y][0] == 1) {
+            gameOver();
+            deactivateBoard();
+            return -10;
+        }
+        else {
+            board[x][y][2] = 1;
+            safeSpaces++;
+        }
+        if (traps + safeSpaces == size) {
+            victory();
+            deactivateBoard();
+            return 10;
+        }
+        return board[x][y][1];
+    }
+
+    public void deactivateBoard() {
+        for (int x = 0; x < root; x++) {
+            for (int y = 0; y < root; y++) {
+                board[x][y][2] = 1;
+            }
+        }
     }
 
     public void gameOver() {
         System.out.println("GAME OVER");
+    }
+
+    public void victory() {
+        System.out.println("VICTORY");
     }
 
     public int getSize() {
@@ -66,6 +118,23 @@ public class Game {
 
     public int getRoot() {
         return root;
+    }
+
+    public int getFirstTile() {
+        return firstTileX;
+    }
+
+    public void setFirstTile(int x, int y) {
+        firstTileX = x;
+        firstTileY = y;
+    }
+
+    public int[][][] getBoard() {
+        return board;
+    }
+
+    public int getState() {
+        return state;
     }
     
 }

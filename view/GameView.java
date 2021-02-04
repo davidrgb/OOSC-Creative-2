@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.ButtonListener;
 import model.Game;
 
 public class GameView {
@@ -45,12 +46,39 @@ public class GameView {
         panel.setPreferredSize(new Dimension(yResolution * 2 / 3, yResolution * 2 / 3));
         window.setLocation(xResolution / 2 - yResolution / 3, yResolution / 2 - yResolution / 3);
 
+        ButtonListener buttonListener = new ButtonListener(this);
+        
         for (int i = 0; i < game.getSize(); i++) {
             JButton button = new JButton();
             buttons[i] = button;
+            button.addActionListener(buttonListener);
             panel.add(button);
         }
 
         container.add(BorderLayout.CENTER, panel);
+    }
+
+    public void gameOver() {
+        window.getContentPane().removeAll();
+        var gameOver = new GameOverView(window, xResolution, yResolution);
+        gameOver.init();
+        window.pack();
+        window.revalidate();
+    }
+
+    public void victory() {
+        window.getContentPane().removeAll();
+        var victory = new VictoryView(window, xResolution, yResolution);
+        victory.init();
+        window.pack();
+        window.revalidate();
+    }
+
+    public JButton[] getButtons() {
+        return buttons;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }
