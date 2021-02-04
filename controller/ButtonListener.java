@@ -17,14 +17,16 @@ public class ButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < panel.getGame().getSize(); i++) {
             if (e.getSource() == panel.getButtons()[i]) {
-                if (panel.getGame().getBoard()[i % panel.getGame().getRoot()][i / panel.getGame().getRoot()][2] != 1) {
+                int modRoot = i % panel.getGame().getRoot();
+                int divRoot = i / panel.getGame().getRoot();
+                if (panel.getGame().getBoard()[modRoot][divRoot][2] != 1) {
                     if (panel.getGame().getFirstTile() == -1) {
-                        panel.getGame().setFirstTile(i % panel.getGame().getRoot(), i / panel.getGame().getRoot());
+                        panel.getGame().setFirstTile(modRoot, divRoot);
                         panel.getGame().randomizeBoard();
-                        panel.getButtons()[i].setText(String.valueOf(panel.getGame().revealSpace(i % panel.getGame().getRoot(), i / panel.getGame().getRoot())));
+                        panel.getButtons()[i].setText(String.valueOf(panel.getGame().revealSpace(modRoot, divRoot)));
                     }
                     else {
-                        int state = panel.getGame().revealSpace(i % panel.getGame().getRoot(), i / panel.getGame().getRoot());
+                        int state = panel.getGame().revealSpace(modRoot, divRoot);
                         switch (state) {
                             case -10: panel.endGame(state); break;
                             case 10: panel.endGame(state);break;
