@@ -77,7 +77,6 @@ public class Game {
 
     public int revealSpace(int x, int y) {
         if (board[x][y][0] == 1) {
-            gameOver();
             deactivateBoard();
             return -10;
         }
@@ -86,7 +85,6 @@ public class Game {
             safeSpaces++;
         }
         if (traps + safeSpaces == size) {
-            victory();
             deactivateBoard();
             return 10;
         }
@@ -99,14 +97,6 @@ public class Game {
                 board[x][y][2] = 1;
             }
         }
-    }
-
-    public void gameOver() {
-        System.out.println("GAME OVER");
-    }
-
-    public void victory() {
-        System.out.println("VICTORY");
     }
 
     public int[][][] getBoard() {
