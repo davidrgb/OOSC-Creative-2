@@ -42,5 +42,13 @@ public class MainMenuView {
         panel.add(hardButton);
 
         container.add(BorderLayout.CENTER, panel);
+
+        instructionsButton.addActionListener( e -> {
+            window.getContentPane().removeAll();
+            var instructions = new InstructionsView(window, xResolution, yResolution);
+            instructions.init();
+            window.pack();
+            window.revalidate();
+        });
     }
 }
