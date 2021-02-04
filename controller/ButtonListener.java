@@ -26,8 +26,8 @@ public class ButtonListener implements ActionListener {
                     else {
                         int state = panel.getGame().revealSpace(i % panel.getGame().getRoot(), i / panel.getGame().getRoot());
                         switch (state) {
-                            case -10: panel.endGame(state); break;
-                            case 10: panel.endGame(state);break;
+                            case -10: /*panel.gameOver();*/panel.endGame(state); break;
+                            case 10: /*panel.victory();*/panel.endGame(state);break;
                             default: panel.getButtons()[i].setText(String.valueOf(state)); break;
                         }
                     }
