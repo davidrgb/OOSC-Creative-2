@@ -22,7 +22,9 @@ public class GameView {
 
     private JButton buttons[];
 
-    public GameView(JFrame window, int xResolution, int yResolution, int mode) {
+    private boolean cheats;
+
+    public GameView(JFrame window, int xResolution, int yResolution, int mode, boolean cheats) {
         this.window = window;
         switch (mode) {
             case 1: window.setTitle("Easy"); break;
@@ -30,12 +32,14 @@ public class GameView {
             case 3: window.setTitle("Hard"); break;
         }
 
-        game = new Game(mode);
+        game = new Game(mode, cheats);
 
         this.xResolution = xResolution;
         this.yResolution = yResolution;
 
         buttons = new JButton[game.getSize()];
+
+        this.cheats = cheats;
     }
 
     public void init() {
@@ -60,7 +64,7 @@ public class GameView {
 
     public void endGame(int state) {
         window.getContentPane().removeAll();
-        var endGame = new EndGameView(window, xResolution, yResolution, state);
+        var endGame = new EndGameView(window, xResolution, yResolution, state, cheats);
         endGame.init();
         window.pack();
         window.revalidate();

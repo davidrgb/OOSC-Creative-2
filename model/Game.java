@@ -15,9 +15,11 @@ public class Game {
 
     private int state;
 
+    private boolean cheats;
+
     Random random = new Random();
 
-    public Game(int mode) {
+    public Game(int mode, boolean cheats) {
         switch (mode) {
             case 1: size = 9; root = 3; break;
             case 2: size = 25; root = 5; break;
@@ -33,6 +35,8 @@ public class Game {
         safeSpaces = 0;
 
         state = 0;
+
+        this.cheats = cheats;
     }
 
     public void randomizeBoard() {
@@ -60,13 +64,15 @@ public class Game {
             }
         }
 
-        for (int row = 0; row < root; row++) {
-            for (int i = 0; i < root; i++) {
-                System.out.print(board[i][row][0] + " ");
-                if (i == root - 1) System.out.println();
+        if (cheats) {
+            for (int row = 0; row < root; row++) {
+                for (int i = 0; i < root; i++) {
+                    System.out.print(board[i][row][0] + " ");
+                    if (i == root - 1) System.out.println();
+                }
             }
+            System.out.println();
         }
-        System.out.println();
     }
 
     public int revealSpace(int x, int y) {

@@ -18,7 +18,9 @@ public class EndGameView {
 
     private int state;
 
-    public EndGameView(JFrame window, int xResolution, int yResolution, int state) {
+    private boolean cheats;
+
+    public EndGameView(JFrame window, int xResolution, int yResolution, int state, boolean cheats) {
         this.window = window;
         if (state == -10) window.setTitle("Game Over");
         else window.setTitle("Victory");
@@ -27,6 +29,8 @@ public class EndGameView {
         this.yResolution = yResolution;
 
         this.state = state;
+
+        this.cheats = cheats;
     }
 
     public void init() {
@@ -45,7 +49,7 @@ public class EndGameView {
         JButton button = new JButton(buttonText);
         button.addActionListener( e -> {
             window.getContentPane().removeAll();
-            MainMenuView mainMenu = new MainMenuView(window, xResolution, yResolution);
+            MainMenuView mainMenu = new MainMenuView(window, xResolution, yResolution, cheats);
             mainMenu.init();
             window.pack();
             window.revalidate();

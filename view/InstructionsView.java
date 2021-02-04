@@ -20,12 +20,16 @@ public class InstructionsView {
 
     private String instructions;
 
-    public InstructionsView(JFrame window, int xResolution, int yResolution) {
+    private boolean cheats;
+
+    public InstructionsView(JFrame window, int xResolution, int yResolution, boolean cheats) {
         this.window = window;
         window.setTitle("How To Play");
 
         this.xResolution = xResolution;
         this.yResolution = yResolution;
+
+        this.cheats = cheats;
 
         instructions = "The goal of the game is to clear all of the tiles without activating any traps.\n";
         instructions += "After selecting a safe tile, it will reveal how many traps are in adjacent tiles.\n";
@@ -55,7 +59,7 @@ public class InstructionsView {
 
         exitButton.addActionListener( e -> {
             window.getContentPane().removeAll();
-            var mainMenu = new MainMenuView(window, xResolution, yResolution);
+            var mainMenu = new MainMenuView(window, xResolution, yResolution, cheats);
             mainMenu.init();
             window.pack();
             window.revalidate();
