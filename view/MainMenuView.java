@@ -50,5 +50,29 @@ public class MainMenuView {
             window.pack();
             window.revalidate();
         });
+
+        easyButton.addActionListener( e -> {
+            window.getContentPane().removeAll();
+            var easy = new GameView(window, xResolution, yResolution, 1);
+            easy.init();
+            window.pack();
+            window.revalidate();
+        });
+
+        normalButton.addActionListener( e -> {
+            window.getContentPane().removeAll();
+            var normal = new GameView(window, xResolution, yResolution, 2);
+            normal.init();
+            window.pack();
+            window.revalidate();
+        });
+
+        hardButton.addActionListener( e -> {
+            window.getContentPane().removeAll();
+            var hard = new GameView(window, xResolution, yResolution, 3);
+            hard.init();
+            window.pack();
+            window.revalidate();
+        });
     }
 }
