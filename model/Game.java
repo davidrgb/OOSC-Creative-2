@@ -2,6 +2,8 @@ package model;
 
 import java.util.Random;
 
+import view.GameView;
+
 public class Game {
 
     private int[][][] board;
@@ -17,9 +19,11 @@ public class Game {
 
     private boolean cheats;
 
+    GameView panel;
+
     Random random = new Random();
 
-    public Game(int mode, boolean cheats) {
+    public Game(int mode, boolean cheats, GameView panel) {
         switch (mode) {
             case 1: size = 9; root = 3; break;
             case 2: size = 25; root = 5; break;
@@ -37,6 +41,8 @@ public class Game {
         state = 0;
 
         this.cheats = cheats;
+
+        this.panel = panel;
     }
 
     public void randomizeBoard() {
@@ -65,6 +71,7 @@ public class Game {
         }
 
         if (cheats) {
+            panel.cheats();
             for (int row = 0; row < root; row++) {
                 for (int i = 0; i < root; i++) {
                     System.out.print(board[i][row][0] + " ");
@@ -80,7 +87,7 @@ public class Game {
             deactivateBoard();
             return -10;
         }
-        else {
+        else if (board[x][y][0] == 0) {
             board[x][y][2] = 1;
             safeSpaces++;
         }

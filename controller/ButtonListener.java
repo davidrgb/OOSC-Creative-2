@@ -15,6 +15,7 @@ public class ButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        panel.setState(GameView.State.PLAYING);
         for (int i = 0; i < panel.getGame().getSize(); i++) {
             if (e.getSource() == panel.getButtons()[i]) {
                 int modRoot = i % panel.getGame().getRoot();
@@ -28,13 +29,14 @@ public class ButtonListener implements ActionListener {
                     else {
                         int state = panel.getGame().revealSpace(modRoot, divRoot);
                         switch (state) {
-                            case -10: panel.endGame(state); break;
-                            case 10: panel.endGame(state);break;
+                            case -10: panel.endGame(state); panel.setState(GameView.State.GAMEOVER); break;
+                            case 10: panel.endGame(state); panel.setState(GameView.State.GAMEOVER); break;
                             default: panel.getButtons()[i].setText(String.valueOf(state)); break;
                         }
                     }
                 }
             }
         }
+        panel.getCanvas().repaint();
     }
 }
