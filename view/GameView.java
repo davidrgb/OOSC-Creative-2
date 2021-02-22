@@ -114,10 +114,6 @@ public class GameView {
         return buttons;
     }
 
-    /*public Game getGame() {
-        return game;
-    }*/
-
     public State getState() {
         return state;
     }
