@@ -53,8 +53,8 @@ public class Game {
                     continue; // Skips trap assignment of file selected tile
                 }
                 int temp = random.nextInt(10) + 1;
-                if (temp < 8 && traps < (size * 7 / 10)) {
-                    board[x][y][0] = 1;
+                if (temp < 8 && traps < (size * 7 / 10)) { // 7 in 10 chance current space is a trap, with a maximum of 7 tenths of the board as traps.
+                    board[x][y][0] = 1; // Sets tile as trap
                     for (int rows = y + 1; rows >= y - 1; rows--) { // Adjacent trap addition
                         if (rows >= 0 && rows < root) {
                             for (int columns = x - 1; columns <= x + 1; columns++) {
@@ -62,11 +62,11 @@ public class Game {
                             }
                         }
                     }
-                    board[x][y][1] = board[x][y][1] - 1;
+                    board[x][y][1] = board[x][y][1] - 1; // Subtracts each trap from its own adjacent calculation
                     traps++;
                 }
-                else board[x][y][0] = 0;
-                board[x][y][2] = 0;
+                else board[x][y][0] = 0; // Sets tile as safe
+                board[x][y][2] = 0; // Sets tile as not activated
             }
         }
 
@@ -76,22 +76,22 @@ public class Game {
     }
 
     public int revealSpace(int x, int y) {
-        if (board[x][y][0] == 1) {
-            deactivateBoard();
-            return -10;
+        if (board[x][y][0] == 1) { // Trap selected
+            deactivateBoard(); // Marks all tiles as activated
+            return -10; // Returns loss code
         }
-        else if (board[x][y][0] == 0) {
-            board[x][y][2] = 1;
+        else if (board[x][y][0] == 0) { // Safe space selected
+            board[x][y][2] = 1; // Space marked as activated
             safeSpaces++;
         }
-        if (traps + safeSpaces == size) {
-            deactivateBoard();
-            return 10;
+        if (traps + safeSpaces == size) { // All safe spaces activated
+            deactivateBoard(); // Marks all tiles as activated
+            return 10; // Returns victory code
         }
-        return board[x][y][1];
+        return board[x][y][1]; // If no loss or win, returns number of adjacent traps
     }
 
-    public void deactivateBoard() {
+    public void deactivateBoard() { // Increments through all tiles and marks them as activated for final map painting
         for (int x = 0; x < root; x++) {
             for (int y = 0; y < root; y++) {
                 board[x][y][2] = 1;
@@ -118,9 +118,5 @@ public class Game {
     public void setFirstTile(int x, int y) {
         firstTileX = x;
         firstTileY = y;
-    }
-
-    public int getState() {
-        return state;
     }
 }
