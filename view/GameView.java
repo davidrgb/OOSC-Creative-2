@@ -62,7 +62,7 @@ public class GameView {
         southPanel.setPreferredSize(new Dimension(yResolution / 3, yResolution / 3));
         window.setLocation(xResolution / 2 - yResolution / 6, yResolution / 2 - yResolution / 3);
 
-        ButtonListener buttonListener = new ButtonListener(this);
+        ButtonListener buttonListener = new ButtonListener(this, game);
         
         for (int i = 0; i < game.getSize(); i++) {
             JButton button = new JButton();
@@ -114,9 +114,9 @@ public class GameView {
         return buttons;
     }
 
-    public Game getGame() {
+    /*public Game getGame() {
         return game;
-    }
+    }*/
 
     public State getState() {
         return state;
