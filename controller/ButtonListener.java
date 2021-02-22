@@ -35,6 +35,7 @@ public class ButtonListener implements ActionListener {
                         }
                     }
                 }
+                panel.getButtons()[i].setEnabled(false);
             }
         }
         panel.getCanvas().repaint();
