@@ -33,7 +33,7 @@ public class Game {
         firstTileX = -1;
         firstTileY = -1;
 
-        board = new int[root][root][3];
+        board = new int[root][root][3]; // Coordinate - Coordinate - Trap? : Adjactent Traps? : Already Activated?
 
         traps = 0;
         safeSpaces = 0;

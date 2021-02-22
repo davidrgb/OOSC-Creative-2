@@ -27,7 +27,7 @@ public class GameView {
     private boolean cheats;
 
     public enum State {
-        READY, PLAYING, GAMEOVER
+        READY, PLAYING
     }
 
     private State state = State.READY;

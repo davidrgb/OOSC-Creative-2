@@ -51,12 +51,6 @@ public class GameCanvas extends JPanel {
             int yCenteredLocation = (yResolution / 6) - (fontMetrics.getHeight() / 2);
             g2.drawString(startString, xCenteredLocation, yCenteredLocation);
         } else {
-
-            if (state == GameView.State.GAMEOVER) {
-                g2.setColor(Color.red);
-                g2.drawString("GAMEOVER", 70, 150);
-            }
-
             g2.setColor(Color.black);
             g2.setFont(new Font("Courier New", Font.BOLD, 12));
 
