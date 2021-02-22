@@ -32,8 +32,8 @@ public class InstructionsView {
         this.cheats = cheats;
 
         instructions = "The goal of the game is to clear all of the tiles without activating any traps.\n";
-        instructions += "After selecting a safe tile, it will reveal how many traps are in adjacent tiles.\n";
-        instructions += "If you select any traps, the game ends immediately.\n";
+        instructions += "After selecting a safe tile, it will reveal how many traps are in adjacent tiles and it will be marked green on the map.\n";
+        instructions += "If you select any traps, the game ends immediately and the map reveals the tiles.\n";
         instructions += "\nGood luck!";
     }
 
