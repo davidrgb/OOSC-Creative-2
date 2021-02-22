@@ -72,13 +72,6 @@ public class Game {
 
         if (cheats) {
             panel.cheats();
-            for (int row = 0; row < root; row++) {
-                for (int i = 0; i < root; i++) {
-                    System.out.print(board[i][row][0] + " ");
-                    if (i == root - 1) System.out.println();
-                }
-            }
-            System.out.println();
         }
     }
 

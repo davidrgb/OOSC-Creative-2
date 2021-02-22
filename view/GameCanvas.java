@@ -17,27 +17,21 @@ public class GameCanvas extends JPanel {
 
     private FontMetrics fontMetrics;
 
-    private int xResolution;
     private int yResolution;
 
-    private int xResolutionTile;
-    private int yResolutionTile;
+    private int resolutionTile;
 
-    private Game game;
     private int root;
     private int[][][] board;
 
     public GameCanvas(GameView panel, int xResolution, int yResolution, Game game) {
         this.panel = panel;
         setBackground(Color.white);
-        this.xResolution = xResolution;
         this.yResolution = yResolution;
         setPreferredSize(new Dimension(yResolution / 3, yResolution / 3));
         root = game.getRoot();
-        xResolutionTile = (yResolution / 3) / root;
-        yResolutionTile = (yResolution / 3) / root;
+        resolutionTile = (yResolution / 3) / root;
         board = game.getBoard();
-        this.game = game;
     }
 
     @Override
@@ -65,39 +59,24 @@ public class GameCanvas extends JPanel {
 
             g2.setColor(Color.black);
             g2.setFont(new Font("Courier New", Font.BOLD, 12));
-            //g2.drawString("PLAYING", 70, 150);
-            //g2.drawRect(0, 0, xResolutionTile, yResolutionTile);
-            /*for (int i = 0; i < root; i++) {
-                g2.drawRect(xResolutionTile * i, 0, xResolutionTile, yResolutionTile);
-            }*/
 
             for (int i = 0; i < root; i++) {
                 for (int j = 0; j < root; j++) {
                     if (board[j][i][2] == 1) {
                         if (board[j][i][0] == 0) {
                             g2.setColor(Color.green);
-                            g2.fillRect(xResolutionTile * j, yResolutionTile * i, xResolutionTile, yResolutionTile);
+                            g2.fillRect(resolutionTile * j, resolutionTile * i, resolutionTile, resolutionTile);
                         }
                         else {
                             g2.setColor(Color.red);
-                            g2.fillRect(xResolutionTile * j, yResolutionTile * i, xResolutionTile, yResolutionTile);
+                            g2.fillRect(resolutionTile * j, resolutionTile * i, resolutionTile, resolutionTile);
                         }
-                        //drawTraps(j, i, g2);
                     }
                     g2.setColor(Color.black);
-                    g2.drawRect(xResolutionTile * j, yResolutionTile * i, xResolutionTile, yResolutionTile);
+                    g2.drawRect(resolutionTile * j, resolutionTile * i, resolutionTile, resolutionTile);
                 }
                 
             }
         }
     }
-
-    /*public void drawTraps(int j, int i, Graphics2D g2) {
-        int adjacentTraps = game.revealSpace(j, i);
-        System.out.println(adjacentTraps);
-        String adjacentTrapsString = "" + adjacentTraps;
-        int xCenteredLocation = ((xResolutionTile / 2) + (xResolutionTile * j) - (fontMetrics.stringWidth(adjacentTrapsString) / 2));
-        int yCenteredLocation = ((yResolutionTile / 2) + (yResolutionTile * i) - (fontMetrics.stringWidth(adjacentTrapsString) / 2));
-        g2.drawString(adjacentTrapsString, xResolutionTile * j, yResolutionTile * i);
-    }*/
 }

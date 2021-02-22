@@ -90,11 +90,6 @@ public class GameView {
     }
 
     public void endGame(int state) {
-        //window.getContentPane().removeAll();
-        //var endGame = new EndGameView(window, xResolution, yResolution, state, cheats);
-        //endGame.init();
-        //window.pack();
-        //window.revalidate();
         for (int i = 0; i < game.getSize(); i++) {
             southPanel.remove(buttons[i]);
         }
